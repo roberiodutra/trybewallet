@@ -7,18 +7,19 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      validEmail: false,
+      enableButton: false,
     };
   }
 
   // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   onInputChange = ({ target: { name, value } }) => {
-    const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const { email, password } = this.state;
+    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
+    const five = 5;
 
     if (name === 'email') {
       this.setState({
-        email: value,
-        validEmail: value.match(mailFormat),
+        email: value.match(mailFormat),
       });
     }
 
@@ -27,12 +28,18 @@ class Login extends Component {
         password: value,
       });
     }
+
+    if (email && password.length >= five) {
+      this.setState({
+        enableButton: true,
+      });
+    }
   };
 
   onButtonClick = () => {};
 
   render() {
-    const { email, password, validEmail } = this.state;
+    const { email, password, enableButton } = this.state;
     return (
       <div>
         <input
@@ -59,7 +66,7 @@ class Login extends Component {
         <button
           type="button"
           onClick={ this.onButtonClick }
-          disabled={ !validEmail }
+          disabled={ !enableButton }
         >
           Entrar
         </button>
