@@ -10,9 +10,18 @@ class Login extends Component {
     };
   }
 
-  onEmailChange = () => {};
-
-  onPasswordChange = () => {};
+  onInputChange = ({ target: { name, value } }) => {
+    if (name === 'email') {
+      this.setState({
+        email: value,
+      });
+    }
+    if (name === 'password') {
+      this.setState({
+        password: value,
+      });
+    }
+  };
 
   onButtonClick = () => {};
 
@@ -26,17 +35,19 @@ class Login extends Component {
           name="email"
           value={ email }
           testId="email-input"
-          onChange={ this.onEmailChange }
+          onChange={ this.onInputChange }
+          required
         />
 
         <input
           placeholder="password here"
           type="password"
           name="password"
-          min={ 6 }
+          minLength="6"
           value={ password }
           testId="password-input"
-          onChange={ this.onPasswordChange }
+          onChange={ this.onInputChange }
+          required
         />
 
         <button
