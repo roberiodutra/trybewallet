@@ -13,9 +13,7 @@ class Login extends Component {
 
   // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   onInputChange = ({ target: { name, value } }) => {
-    const { email, password } = this.state;
     const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
-    const five = 5;
 
     if (name === 'email') {
       this.setState({
@@ -28,13 +26,23 @@ class Login extends Component {
         password: value,
       });
     }
+    this.isEnabled();
+  };
+
+  isEnabled = () => {
+    const { email, password } = this.state;
+    const five = 5;
 
     if (email && password.length >= five) {
       this.setState({
         enableButton: true,
       });
+    } else {
+      this.setState({
+        enableButton: false,
+      });
     }
-  };
+  }
 
   onButtonClick = () => {};
 
