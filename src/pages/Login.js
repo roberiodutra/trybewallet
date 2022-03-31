@@ -48,9 +48,10 @@ class Login extends Component {
   }
 
   onButtonClick = () => {
-    const { addEmail } = this.props;
+    const { addEmail, history } = this.props;
     const { email } = this.state;
     addEmail(email);
+    history.push('/carteira');
   };
 
   render() {
