@@ -7,15 +7,21 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      validEmail: false,
     };
   }
 
+  // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   onInputChange = ({ target: { name, value } }) => {
+    const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
     if (name === 'email') {
       this.setState({
         email: value,
+        validEmail: value.match(mailFormat),
       });
     }
+
     if (name === 'password') {
       this.setState({
         password: value,
@@ -26,7 +32,7 @@ class Login extends Component {
   onButtonClick = () => {};
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, validEmail } = this.state;
     return (
       <div>
         <input
@@ -53,6 +59,7 @@ class Login extends Component {
         <button
           type="button"
           onClick={ this.onButtonClick }
+          disabled={ !validEmail }
         >
           Entrar
         </button>
