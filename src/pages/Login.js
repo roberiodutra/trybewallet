@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import setUserEmail from '../actions';
 
 class Login extends Component {
   constructor(props) {
@@ -44,7 +47,11 @@ class Login extends Component {
     }
   }
 
-  onButtonClick = () => {};
+  onButtonClick = () => {
+    const { addEmail } = this.props;
+    const { email } = this.state;
+    addEmail(email);
+  };
 
   render() {
     const { email, password, enableButton } = this.state;
@@ -83,4 +90,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  addEmail: PropTypes.func,
+}.isRequired;
+
+const mapDispatchToProps = (dispatch) => ({
+  addEmail: (e) => dispatch(setUserEmail(e)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
