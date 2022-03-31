@@ -14,13 +14,10 @@ class Login extends Component {
     };
   }
 
-  // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   onInputChange = ({ target: { name, value } }) => {
-    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
-
     if (name === 'email') {
       this.setState({
-        email: value.match(mailFormat),
+        email: value,
       });
     }
 
@@ -32,11 +29,13 @@ class Login extends Component {
     this.isEnabled();
   };
 
+  // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   isEnabled = () => {
     const { email, password } = this.state;
+    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
     const five = 5;
 
-    if (email && password.length >= five) {
+    if (email.match(mailFormat) && password.length >= five) {
       this.setState({
         enableButton: true,
       });
@@ -63,7 +62,7 @@ class Login extends Component {
           type="email"
           name="email"
           value={ email }
-          testId="email-input"
+          data-testid="email-input"
           onChange={ this.onInputChange }
           required
         />
@@ -74,7 +73,7 @@ class Login extends Component {
           name="password"
           minLength="6"
           value={ password }
-          testId="password-input"
+          data-testid="password-input"
           onChange={ this.onInputChange }
           required
         />
