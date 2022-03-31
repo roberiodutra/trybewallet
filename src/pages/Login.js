@@ -93,6 +93,7 @@ class Login extends Component {
 
 Login.propTypes = {
   addEmail: PropTypes.func,
+  history: PropTypes.objectOf(PropTypes.any),
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
