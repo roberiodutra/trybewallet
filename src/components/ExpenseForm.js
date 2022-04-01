@@ -10,8 +10,6 @@ class ExpenseForm extends Component {
       value: '',
       description: '',
       currency: 'USD',
-      paymentMethod: 'Dinheiro',
-      tagCategory: 'Alimentação',
     };
   }
 
@@ -21,7 +19,7 @@ class ExpenseForm extends Component {
 
   render() {
     const { currencies } = this.props;
-    const { value, description, currency, paymentMethod, tagCategory } = this.state;
+    const { value, description, currency } = this.state;
     const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const paymentForm = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     return (
@@ -59,7 +57,7 @@ class ExpenseForm extends Component {
               id="currency"
               onChange={ this.onHandleChange }
             >
-              {currencies.map((curr) => (
+              { currencies && currencies.map((curr) => (
                 <option
                   key={ curr }
                   value={ curr }
@@ -74,13 +72,10 @@ class ExpenseForm extends Component {
             Método de pagamento:
             <select
               id="paymentMethod"
-              name="paymentMethod"
-              value={ paymentMethod }
-              onChange={ this.onHandleChange }
               data-testid="method-input"
             >
               {paymentForm.map((item) => (
-                <option key={ item } value={ item }>{ item }</option>
+                <option key={ item }>{ item }</option>
               ))}
             </select>
           </label>
@@ -89,13 +84,10 @@ class ExpenseForm extends Component {
             Tag:
             <select
               id="tagCategory"
-              name="tagCategory"
-              value={ tagCategory }
-              onChange={ this.onHandleChange }
               data-testid="tag-input"
             >
               {categories.map((item) => (
-                <option key={ item } value={ item }>{ item }</option>
+                <option key={ item }>{ item }</option>
               ))}
             </select>
           </label>

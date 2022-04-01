@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { currenciesThunk } from '../actions';
 import Header from '../components/Header';
-import getCurrencies from '../services/awesomeAPI';
-import { setCurrencies } from '../actions';
 import ExpenseForm from '../components/ExpenseForm';
 
-class Wallet extends React.Component {
-  async componentDidMount() {
+class Wallet extends Component {
+  componentDidMount() {
     const { getAllCurrencies } = this.props;
-    getAllCurrencies(await getCurrencies());
+    getAllCurrencies();
   }
 
   render() {
@@ -27,7 +26,7 @@ Wallet.propTypes = {
 }.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllCurrencies: (e) => dispatch(setCurrencies(e)),
+  getAllCurrencies: () => dispatch(currenciesThunk()),
 });
 
 export default connect(null, mapDispatchToProps)(Wallet);
