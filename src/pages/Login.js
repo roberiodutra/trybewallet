@@ -24,18 +24,18 @@ class Login extends Component {
     if (name === 'password') {
       this.setState({
         password: value,
-      });
+      },
+      this.isEnabled);
     }
-    this.isEnabled();
   };
 
   // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   isEnabled = () => {
     const { email, password } = this.state;
     const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
-    const five = 5;
+    const six = 6;
 
-    if (email.match(mailFormat) && password.length >= five) {
+    if (email.match(mailFormat) && password.length >= six) {
       this.setState({
         enableButton: true,
       });

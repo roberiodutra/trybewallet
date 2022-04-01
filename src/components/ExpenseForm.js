@@ -25,7 +25,7 @@ class ExpenseForm extends Component {
     const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const paymentForm = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     return (
-      <div>
+      <section>
         <form>
           <label htmlFor="expense">
             Valor:
@@ -100,7 +100,7 @@ class ExpenseForm extends Component {
             </select>
           </label>
         </form>
-      </div>
+      </section>
     );
   }
 }
