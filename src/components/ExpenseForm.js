@@ -38,7 +38,7 @@ class ExpenseForm extends Component {
           <label htmlFor="expense">
             Valor:
             <input
-              type="text"
+              type="number"
               name="value"
               value={ value }
               id="expense"
@@ -119,6 +119,7 @@ class ExpenseForm extends Component {
 
 ExpenseForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.object),
+  expenses: PropTypes.arrayOf(PropTypes.object),
 }.isRequired;
 
 const mapStateToProps = ({ wallet }) => ({
