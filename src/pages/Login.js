@@ -56,27 +56,31 @@ class Login extends Component {
   render() {
     const { email, password, enableButton } = this.state;
     return (
-      <div>
-        <input
-          placeholder="email@test.com"
-          type="email"
-          name="email"
-          value={ email }
-          data-testid="email-input"
-          onChange={ this.onInputChange }
-          required
-        />
+      <section>
+        <label htmlFor="email">
+          <input
+            placeholder="email@test.com"
+            type="email"
+            name="email"
+            value={ email }
+            data-testid="email-input"
+            onChange={ this.onInputChange }
+            required
+          />
+        </label>
 
-        <input
-          placeholder="password here"
-          type="password"
-          name="password"
-          minLength="6"
-          value={ password }
-          data-testid="password-input"
-          onChange={ this.onInputChange }
-          required
-        />
+        <label htmlFor="password">
+          <input
+            placeholder="password here"
+            type="password"
+            name="password"
+            minLength="6"
+            value={ password }
+            data-testid="password-input"
+            onChange={ this.onInputChange }
+            required
+          />
+        </label>
 
         <button
           type="button"
@@ -85,7 +89,7 @@ class Login extends Component {
         >
           Entrar
         </button>
-      </div>
+      </section>
     );
   }
 }
