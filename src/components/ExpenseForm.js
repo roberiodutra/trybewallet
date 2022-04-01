@@ -23,6 +23,7 @@ class ExpenseForm extends Component {
     const { currencies } = this.props;
     const { value, description, currency, paymentMethod, tagCategory } = this.state;
     const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+    const paymentForm = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     return (
       <div>
         <form>
@@ -78,9 +79,9 @@ class ExpenseForm extends Component {
               onChange={ this.onHandleChange }
               data-testid="method-input"
             >
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
+              {paymentForm.map((item) => (
+                <option key={ item } value={ item }>{ item }</option>
+              ))}
             </select>
           </label>
 
