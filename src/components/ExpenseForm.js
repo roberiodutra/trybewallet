@@ -57,7 +57,7 @@ class ExpenseForm extends Component {
               id="currency"
               onChange={ this.onHandleChange }
             >
-              { currencies && currencies.map((curr) => (
+              { currencies.map((curr) => (
                 <option
                   key={ curr }
                   value={ curr }
