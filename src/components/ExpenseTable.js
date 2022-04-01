@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 
 class ExpenseTable extends Component {
   currencyExchanges = (elem) => {
-    const currencyName = () => {
-      if (elem.currency === 'USD') {
-        return 'Dólar Comercial';
-      }
-      return elem.exchangeRates[elem.currency].name.split('/')[0];
-    };
+    const currencyName = () => (elem.currency === 'USD'
+      ? 'Dólar Comercial'
+      : elem.exchangeRates[elem.currency].name.split('/')[0]);
+
     return (
       <>
         <td>{currencyName()}</td>
