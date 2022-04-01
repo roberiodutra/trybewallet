@@ -24,6 +24,7 @@ class ExpenseForm extends Component {
     e.preventDefault();
     const { setExpenseState } = this.props;
     setExpenseState(this.state);
+    this.setState({ value: '' });
   }
 
   render() {

@@ -27,8 +27,8 @@ export const currenciesThunk = () => async (dispatch) => {
 };
 
 export const expenseThunk = (expenses) => async (dispatch) => {
-  const exchange = await getExchanges();
-  dispatch(setExpenses({ ...expenses, exchange }));
+  const exchangeRates = await getExchanges();
+  dispatch(setExpenses({ ...expenses, exchangeRates }));
 };
 
 export default actions;
