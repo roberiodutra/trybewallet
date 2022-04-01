@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getExchanges } from '../services';
 
 class ExpenseForm extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class ExpenseForm extends Component {
       value: '',
       description: '',
       currency: 'USD',
+      paymentMethod: 'Dinheiro',
+      tagCategory: 'Alimentação',
     };
   }
 
@@ -19,7 +22,7 @@ class ExpenseForm extends Component {
 
   render() {
     const { currencies } = this.props;
-    const { value, description, currency } = this.state;
+    const { value, description, currency, paymentMethod, tagCategory } = this.state;
     const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const paymentForm = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     return (
@@ -72,6 +75,9 @@ class ExpenseForm extends Component {
             Método de pagamento:
             <select
               id="paymentMethod"
+              name="paymentMethod"
+              value={ paymentMethod }
+              onChange={ this.onHandleChange }
               data-testid="method-input"
             >
               {paymentForm.map((item) => (
@@ -84,6 +90,9 @@ class ExpenseForm extends Component {
             Tag:
             <select
               id="tagCategory"
+              name="tagCategory"
+              value={ tagCategory }
+              onChange={ this.onHandleChange }
               data-testid="tag-input"
             >
               {categories.map((item) => (
