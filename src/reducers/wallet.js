@@ -8,7 +8,9 @@ const INITIAL_STATE = {
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case actions.SET_CURRENCIES:
-    return { ...state, currencies: action.currencies };
+    return { ...state,
+      currencies: action.currencies };
+
   case actions.SET_EXPENSES:
     return { ...state,
       expenses: [...state.expenses,

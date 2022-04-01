@@ -32,7 +32,7 @@ class Login extends Component {
   // Regex: https://www.w3resource.com/javascript/form/email-validation.php
   isEnabled = () => {
     const { email, password } = this.state;
-    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/g;
+    const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/g;
     const six = 6;
 
     if (email.match(mailFormat) && password.length >= six) {
