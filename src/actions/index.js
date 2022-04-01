@@ -1,7 +1,16 @@
-export const SET_USER_EMAIL = 'SET_USER_EMAIL';
-const setUserEmail = (email) => (
+const actions = {
+  SET_USER_EMAIL: 'SET_USER_EMAIL',
+  SET_CURRENCIES: 'SET_CURRENCIES',
+};
+
+export const setUserEmail = (email) => (
   {
-    type: SET_USER_EMAIL, email,
+    type: actions.SET_USER_EMAIL, email,
   });
 
-export default setUserEmail;
+export const setCurrencies = (currencies) => (
+  {
+    type: actions.SET_CURRENCIES, currencies,
+  });
+
+export default actions;
