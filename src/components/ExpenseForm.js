@@ -11,8 +11,8 @@ class ExpenseForm extends Component {
       value: '',
       description: '',
       currency: 'USD',
-      paymentMethod: 'Dinheiro',
-      tagCategory: 'Alimentação',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     };
   }
 
@@ -20,9 +20,15 @@ class ExpenseForm extends Component {
     this.setState({ [name]: value });
   }
 
+  onHandleClick = (e) => {
+    e.preventDefault();
+    const { setExpenseState } = this.props;
+    setExpenseState(this.state);
+  }
+
   render() {
     const { currencies } = this.props;
-    const { value, description, currency, paymentMethod, tagCategory } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     const paymentForm = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
     return (
@@ -71,12 +77,12 @@ class ExpenseForm extends Component {
             </select>
           </label>
 
-          <label htmlFor="paymentMethod">
+          <label htmlFor="method">
             Método de pagamento:
             <select
-              id="paymentMethod"
-              name="paymentMethod"
-              value={ paymentMethod }
+              id="method"
+              name="method"
+              value={ method }
               onChange={ this.onHandleChange }
               data-testid="method-input"
             >
@@ -86,12 +92,12 @@ class ExpenseForm extends Component {
             </select>
           </label>
 
-          <label htmlFor="tagCategory">
+          <label htmlFor="tag">
             Tag:
             <select
-              id="tagCategory"
-              name="tagCategory"
-              value={ tagCategory }
+              id="tag"
+              name="tag"
+              value={ tag }
               onChange={ this.onHandleChange }
               data-testid="tag-input"
             >
@@ -100,6 +106,10 @@ class ExpenseForm extends Component {
               ))}
             </select>
           </label>
+
+          <button type="submit" onClick={ this.onHandleClick }>
+            Adicionar despesa
+          </button>
         </form>
       </section>
     );
@@ -112,6 +122,7 @@ ExpenseForm.propTypes = {
 
 const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
+  expenses: wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({

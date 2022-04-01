@@ -3,7 +3,7 @@ import getCurrencies, { getExchanges } from '../services/awesomeAPI';
 const actions = {
   SET_USER_EMAIL: 'SET_USER_EMAIL',
   SET_CURRENCIES: 'SET_CURRENCIES',
-  FETCH_API: 'FETCH_API',
+  SET_EXPENSES: 'SET_EXPENSES',
 };
 
 export const setUserEmail = (email) => (
@@ -16,9 +16,9 @@ export const setCurrencies = (currencies) => (
     type: actions.SET_CURRENCIES, currencies,
   });
 
-export const fetchAPI = (data) => (
+export const setExpenses = (expenses) => (
   {
-    type: actions.FETCH_API, data,
+    type: actions.SET_EXPENSES, expenses,
   });
 
 export const currenciesThunk = () => async (dispatch) => {
@@ -26,9 +26,9 @@ export const currenciesThunk = () => async (dispatch) => {
   dispatch(setCurrencies(currencies));
 };
 
-export const expenseThunk = () => async (dispatch) => {
+export const expenseThunk = (expenses) => async (dispatch) => {
   const exchange = await getExchanges();
-  dispatch(fetchAPI(exchange));
+  dispatch(setExpenses({ ...expenses, exchange }));
 };
 
 export default actions;
