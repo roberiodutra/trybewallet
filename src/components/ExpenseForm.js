@@ -6,6 +6,7 @@ class ExpenseForm extends Component {
 
     this.state = {
       value: '',
+      description: '',
     };
   }
 
@@ -14,9 +15,9 @@ class ExpenseForm extends Component {
   }
 
   render() {
-    const { value } = this.state;
+    const { value, description } = this.state;
     return (
-      <section>
+      <div>
         <form>
           <label htmlFor="expense">
             Valor:
@@ -29,8 +30,19 @@ class ExpenseForm extends Component {
               data-testid="value-input"
             />
           </label>
+          <label htmlFor="description">
+            Descrição:
+            <input
+              type="text"
+              name="description"
+              value={ description }
+              id="description"
+              onChange={ this.onHandleChange }
+              data-testid="description-input"
+            />
+          </label>
         </form>
-      </section>
+      </div>
     );
   }
 }
