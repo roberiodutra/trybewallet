@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import getCurrencies from '../services/awesomeAPI';
 import { setCurrencies } from '../actions';
+import ExpenseForm from '../components/ExpenseForm';
 
 class Wallet extends React.Component {
   async componentDidMount() {
@@ -15,14 +16,15 @@ class Wallet extends React.Component {
     return (
       <div>
         <Header />
+        <ExpenseForm />
       </div>
     );
   }
 }
 
 Wallet.propTypes = {
-  getAllCurrencies: PropTypes.func.isRequired,
-};
+  getAllCurrencies: PropTypes.func,
+}.isRequired;
 
 const mapDispatchToProps = (dispatch) => ({
   getAllCurrencies: (e) => dispatch(setCurrencies(e)),
