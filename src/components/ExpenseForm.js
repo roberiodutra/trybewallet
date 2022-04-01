@@ -10,6 +10,7 @@ class ExpenseForm extends Component {
       value: '',
       description: '',
       currency: 'USD',
+      paymentMethod: 'Dinheiro',
     };
   }
 
@@ -19,7 +20,7 @@ class ExpenseForm extends Component {
 
   render() {
     const { currencies } = this.props;
-    const { value, description, currency } = this.state;
+    const { value, description, currency, paymentMethod } = this.state;
     return (
       <div>
         <form>
@@ -56,10 +57,28 @@ class ExpenseForm extends Component {
               onChange={ this.onHandleChange }
             >
               {currencies.map((curr) => (
-                <option key={ curr } value={ curr }>
+                <option
+                  key={ curr }
+                  value={ curr }
+                >
                   { curr }
                 </option>
               ))}
+            </select>
+          </label>
+
+          <label htmlFor="paymentMethod">
+            Método de pagamento:
+            <select
+              id="paymentMethod"
+              name="paymentMethod"
+              value={ paymentMethod }
+              onChange={ this.onHandleChange }
+              data-testid="method-input"
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
             </select>
           </label>
         </form>
