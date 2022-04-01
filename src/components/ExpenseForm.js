@@ -11,6 +11,7 @@ class ExpenseForm extends Component {
       description: '',
       currency: 'USD',
       paymentMethod: 'Dinheiro',
+      tagCategory: 'Alimentação',
     };
   }
 
@@ -20,7 +21,8 @@ class ExpenseForm extends Component {
 
   render() {
     const { currencies } = this.props;
-    const { value, description, currency, paymentMethod } = this.state;
+    const { value, description, currency, paymentMethod, tagCategory } = this.state;
+    const categories = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
     return (
       <div>
         <form>
@@ -79,6 +81,21 @@ class ExpenseForm extends Component {
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
               <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </label>
+
+          <label htmlFor="tagCategory">
+            Tag:
+            <select
+              id="tagCategory"
+              name="tagCategory"
+              value={ tagCategory }
+              onChange={ this.onHandleChange }
+              data-testid="tag-input"
+            >
+              {categories.map((item) => (
+                <option key={ item } value={ item }>{ item }</option>
+              ))}
             </select>
           </label>
         </form>
