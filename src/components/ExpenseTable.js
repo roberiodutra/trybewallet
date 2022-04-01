@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class ExpenseTable extends Component {
   render() {
@@ -22,4 +24,12 @@ class ExpenseTable extends Component {
   }
 }
 
-export default ExpenseTable;
+ExpenseTable.propTypes = {
+  expenses: PropTypes.arrayOf(PropTypes.object),
+}.isRequired;
+
+const mapStateToProps = ({ wallet }) => ({
+  expenses: wallet.expenses,
+});
+
+export default connect(mapStateToProps)(ExpenseTable);
