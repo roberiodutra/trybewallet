@@ -19,6 +19,12 @@ const wallet = (state = INITIAL_STATE, action) => {
           ...action.expenses,
         }],
     };
+
+    // ref: https://medium.com/@ralph1786/adding-and-removing-items-from-redux-store-6d1303ed32c6 //
+  case actions.DEL_EXPENSE:
+    return { ...state,
+      expenses: state.expenses.filter((item) => item.id !== action.expense.id),
+    };
   default:
     return state;
   }

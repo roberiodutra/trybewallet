@@ -120,6 +120,7 @@ class ExpenseForm extends Component {
 ExpenseForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.object),
   expenses: PropTypes.arrayOf(PropTypes.object),
+  setExpenseState: PropTypes.func,
 }.isRequired;
 
 const mapStateToProps = ({ wallet }) => ({

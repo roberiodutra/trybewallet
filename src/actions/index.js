@@ -4,6 +4,7 @@ const actions = {
   SET_USER_EMAIL: 'SET_USER_EMAIL',
   SET_CURRENCIES: 'SET_CURRENCIES',
   SET_EXPENSES: 'SET_EXPENSES',
+  DEL_EXPENSE: 'DEL_EXPENSE',
 };
 
 export const setUserEmail = (email) => (
@@ -19,6 +20,11 @@ export const setCurrencies = (currencies) => (
 export const setExpenses = (expenses) => (
   {
     type: actions.SET_EXPENSES, expenses,
+  });
+
+export const deleteExpense = (expense) => (
+  {
+    type: actions.DEL_EXPENSE, expense,
   });
 
 export const currenciesThunk = () => async (dispatch) => {
