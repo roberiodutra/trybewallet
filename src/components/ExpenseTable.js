@@ -56,6 +56,17 @@ class ExpenseTable extends Component {
                 </button>
 
               </td>
+              <td>
+
+                <button
+                  type="button"
+                  onClick={ () => editorMode() }
+                  data-testid="edit-btn"
+                >
+                  Editar
+                </button>
+
+              </td>
             </tr>
           ))}
         </tbody>
