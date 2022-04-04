@@ -5,19 +5,40 @@ import { currenciesThunk } from '../actions';
 import Header from '../components/Header';
 import ExpenseForm from '../components/ExpenseForm';
 import ExpenseTable from '../components/ExpenseTable';
+import EditExpenses from '../components/EditExpenses';
 
 class Wallet extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      editForm: false,
+    };
+  }
+
   componentDidMount() {
     const { getAllCurrencies } = this.props;
     getAllCurrencies();
   }
 
+  editorModeOn = () => {
+    this.setState({ editForm: true });
+  }
+
+  editorModeOff = () => {
+    this.setState({ editForm: false });
+  }
+
   render() {
+    const { editForm } = this.state;
+
     return (
       <div>
         <Header />
-        <ExpenseForm />
-        <ExpenseTable />
+        { editForm
+          ? <EditExpenses editorModeOff={ this.editorModeOff } />
+          : <ExpenseForm /> }
+        <ExpenseTable editorModeOn={ this.editorModeOn } />
       </div>
     );
   }

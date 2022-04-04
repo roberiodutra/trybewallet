@@ -5,6 +5,8 @@ const actions = {
   SET_CURRENCIES: 'SET_CURRENCIES',
   SET_EXPENSES: 'SET_EXPENSES',
   DEL_EXPENSE: 'DEL_EXPENSE',
+  SELECT_EXPENSE_ID: 'SELECT_EXPENSE_ID',
+  EDIT_EXPENSE: 'EDIT_EXPENSE',
 };
 
 export const setUserEmail = (email) => (
@@ -25,6 +27,16 @@ export const setExpenses = (expenses) => (
 export const deleteExpense = (expense) => (
   {
     type: actions.DEL_EXPENSE, expense,
+  });
+
+export const selectExpenseId = (expenseID) => (
+  {
+    type: actions.SELECT_EXPENSE_ID, expenseID,
+  });
+
+export const editExpense = (expenses) => (
+  {
+    type: actions.EDIT_EXPENSE, expenses,
   });
 
 export const currenciesThunk = () => async (dispatch) => {

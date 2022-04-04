@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../actions';
+import { deleteExpense, selectExpenseId } from '../actions';
 
 class ExpenseTable extends Component {
   currencyExchanges = (elem) => {
@@ -17,6 +17,13 @@ class ExpenseTable extends Component {
       </>
     );
   };
+
+  onHandleClick = (e) => {
+    e.preventDefault();
+    const { selectId, editorModeOn } = this.props;
+    selectId(e.target.id);
+    editorModeOn();
+  }
 
   render() {
     const { expenses, delExpense } = this.props;
@@ -49,21 +56,19 @@ class ExpenseTable extends Component {
 
                 <button
                   type="button"
+                  id={ elem.id }
+                  onClick={ this.onHandleClick }
+                  data-testid="edit-btn"
+                >
+                  Editar
+                </button>
+
+                <button
+                  type="button"
                   onClick={ () => delExpense(elem) }
                   data-testid="delete-btn"
                 >
                   Excluir
-                </button>
-
-              </td>
-              <td>
-
-                <button
-                  type="button"
-                  onClick={ () => editorMode() }
-                  data-testid="edit-btn"
-                >
-                  Editar
                 </button>
 
               </td>
@@ -78,6 +83,8 @@ class ExpenseTable extends Component {
 ExpenseTable.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object),
   delExpense: PropTypes.func,
+  selectId: PropTypes.func,
+  editorModeOn: PropTypes.func,
 }.isRequired;
 
 const mapStateToProps = ({ wallet }) => ({
@@ -86,6 +93,7 @@ const mapStateToProps = ({ wallet }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   delExpense: (del) => dispatch(deleteExpense(del)),
+  selectId: (id) => dispatch(selectExpenseId(Number(id))),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseTable);
