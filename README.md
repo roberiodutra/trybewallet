@@ -1,4 +1,4 @@
-### Projeto proposto pelo curso web full-stack da Trybe.
+### Projeto proposto pelo curso web full-stack da Trybe. 100% completed ✔️
 
 #### Habilidades
 ##### Neste projeto, verificamos se voce é capaz de:
